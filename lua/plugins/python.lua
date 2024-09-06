@@ -59,7 +59,10 @@ return {
       setup = {
         [ruff] = function()
           LazyVim.lsp.on_attach(function(client, _)
-            -- Disable hover in favor of Pyright
+            -- Disable formatting for ruff-lsp
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+            -- Optionally disable hover in favor of Pyright, as mentioned before
             client.server_capabilities.hoverProvider = false
           end, ruff)
         end,
